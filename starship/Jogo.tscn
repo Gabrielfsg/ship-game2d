@@ -1,0 +1,255 @@
+[gd_scene load_steps=21 format=2]
+
+[ext_resource path="res://Jogo.gd" type="Script" id=1]
+[ext_resource path="res://Nave.tscn" type="PackedScene" id=2]
+[ext_resource path="res://ParallaxBackground.gd" type="Script" id=3]
+[ext_resource path="res://sprites/parallax-space-backgound.png" type="Texture" id=4]
+[ext_resource path="res://sprites/parallax-space-far-planets.png" type="Texture" id=5]
+[ext_resource path="res://sprites/parallax-space-big-planet.png" type="Texture" id=6]
+[ext_resource path="res://sprites/parallax-space-ring-planet.png" type="Texture" id=7]
+[ext_resource path="res://sprites/parallax-space-stars.png" type="Texture" id=8]
+[ext_resource path="res://fonts/Fox Cavalier.otf" type="DynamicFontData" id=9]
+[ext_resource path="res://fonts/Big Space DEMO.otf" type="DynamicFontData" id=10]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 16.1756, 254.667 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 20.2154, 256.763 )
+
+[sub_resource type="DynamicFont" id=3]
+size = 42
+font_data = ExtResource( 9 )
+
+[sub_resource type="DynamicFont" id=4]
+
+[sub_resource type="DynamicFont" id=5]
+size = 34
+font_data = ExtResource( 10 )
+
+[sub_resource type="StyleBoxFlat" id=6]
+bg_color = Color( 0, 1, 0.0156863, 1 )
+
+[sub_resource type="StyleBoxFlat" id=7]
+bg_color = Color( 0.415686, 0.415686, 0.415686, 1 )
+
+[sub_resource type="DynamicFont" id=8]
+size = 28
+font_data = ExtResource( 9 )
+
+[sub_resource type="DynamicFont" id=9]
+size = 21
+font_data = ExtResource( 10 )
+
+[sub_resource type="DynamicFont" id=10]
+size = 34
+font_data = ExtResource( 9 )
+
+[node name="Jogo" type="CanvasLayer"]
+pause_mode = 2
+script = ExtResource( 1 )
+
+[node name="Block1" type="StaticBody2D" parent="."]
+position = Vector2( -105.824, 581.038 )
+collision_layer = 2
+collision_mask = 0
+
+[node name="shape1" type="CollisionShape2D" parent="Block1"]
+position = Vector2( 90.488, -234.089 )
+shape = SubResource( 1 )
+
+[node name="Block2" type="StaticBody2D" parent="."]
+position = Vector2( 499.466, 561.303 )
+collision_layer = 2
+collision_mask = 0
+
+[node name="shape2" type="CollisionShape2D" parent="Block2"]
+position = Vector2( -83.4389, -217.314 )
+shape = SubResource( 2 )
+
+[node name="Nave" parent="." instance=ExtResource( 2 )]
+position = Vector2( 203.121, 562.562 )
+collision_mask = 6
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+script = ExtResource( 3 )
+
+[node name="layer1" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2( 1, 0 )
+motion_mirroring = Vector2( 0, 600 )
+
+[node name="tec1" type="TextureRect" parent="ParallaxBackground/layer1"]
+margin_left = -0.539001
+margin_top = 3.14382
+margin_right = 402.462
+margin_bottom = 1067.15
+texture = ExtResource( 4 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="layer2" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_mirroring = Vector2( 0, 600 )
+
+[node name="tec2" type="TextureRect" parent="ParallaxBackground/layer2"]
+margin_left = 150.074
+margin_top = 199.737
+margin_right = 238.074
+margin_bottom = 286.737
+texture = ExtResource( 6 )
+
+[node name="layer3" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_mirroring = Vector2( 0, 600 )
+
+[node name="tec3" type="TextureRect" parent="ParallaxBackground/layer3"]
+margin_left = 64.1153
+margin_top = 48.6079
+margin_right = 336.115
+margin_bottom = 208.608
+texture = ExtResource( 5 )
+
+[node name="layer4" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_mirroring = Vector2( 0, 600 )
+
+[node name="tec4" type="TextureRect" parent="ParallaxBackground/layer4"]
+margin_left = 132.762
+margin_top = 355.121
+margin_right = 239.762
+margin_bottom = 470.121
+texture = ExtResource( 7 )
+
+[node name="layer5" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_mirroring = Vector2( 0, 600 )
+
+[node name="tec5" type="TextureRect" parent="ParallaxBackground/layer5"]
+margin_left = 63.5985
+margin_top = 433.088
+margin_right = 335.599
+margin_bottom = 596.088
+texture = ExtResource( 8 )
+
+[node name="layer6" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_mirroring = Vector2( 0, 600 )
+
+[node name="tec5" type="TextureRect" parent="ParallaxBackground/layer6"]
+margin_left = 62.2728
+margin_top = 25.3636
+margin_right = 334.273
+margin_bottom = 188.364
+texture = ExtResource( 8 )
+
+[node name="layer7" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_mirroring = Vector2( 0, 600 )
+
+[node name="tec5" type="TextureRect" parent="ParallaxBackground/layer7"]
+margin_left = 69.2213
+margin_top = 256.332
+margin_right = 341.221
+margin_bottom = 419.332
+texture = ExtResource( 8 )
+
+[node name="TimeEN" type="Timer" parent="."]
+wait_time = 4.0
+
+[node name="GameOver" type="Control" parent="."]
+visible = false
+margin_left = 145.618
+margin_top = 64.2567
+margin_right = 185.618
+margin_bottom = 104.257
+
+[node name="GOLabel" type="Label" parent="GameOver"]
+margin_left = -80.5585
+margin_top = 90.5501
+margin_right = 252.441
+margin_bottom = 150.55
+custom_fonts/font = SubResource( 3 )
+text = "Game Over"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Button" type="Button" parent="GameOver"]
+margin_left = -68.6633
+margin_top = 204.32
+margin_right = 187.337
+margin_bottom = 284.32
+custom_fonts/font = SubResource( 4 )
+
+[node name="Label" type="Label" parent="GameOver"]
+margin_left = 22.6724
+margin_top = 223.959
+margin_right = 138.672
+margin_bottom = 310.959
+custom_fonts/font = SubResource( 5 )
+text = "MENU
+"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Control" type="Control" parent="."]
+visible = false
+margin_left = 145.618
+margin_top = 64.2567
+margin_right = 185.618
+margin_bottom = 104.257
+
+[node name="saude_bar" type="ProgressBar" parent="Control"]
+margin_left = -117.175
+margin_top = 219.702
+margin_right = 145.825
+margin_bottom = 239.702
+rect_rotation = 270.0
+custom_styles/fg = SubResource( 6 )
+custom_styles/bg = SubResource( 7 )
+custom_colors/font_color = Color( 0.996078, 0.00392157, 0.00392157, 1 )
+value = 100.0
+percent_visible = false
+
+[node name="Pontos" type="Label" parent="Control"]
+margin_left = 181.053
+margin_top = -47.0
+margin_right = 247.053
+margin_bottom = -17.0
+custom_fonts/font = SubResource( 8 )
+text = "12"
+
+[node name="TimeScore" type="Timer" parent="Control"]
+
+[node name="StartPanel" type="Panel" parent="."]
+margin_left = 60.3843
+margin_top = 114.912
+margin_right = 339.384
+margin_bottom = 468.912
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="btnStart" type="Button" parent="StartPanel"]
+margin_left = 41.6564
+margin_top = 260.344
+margin_right = 239.656
+margin_bottom = 319.344
+custom_fonts/font = SubResource( 9 )
+text = "Play"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="StartPanel"]
+margin_left = 34.8432
+margin_top = 53.6216
+margin_right = 301.843
+margin_bottom = 134.622
+custom_fonts/font = SubResource( 10 )
+text = "Star Ship 
+            2d"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="timeout" from="TimeEN" to="." method="_on_TimeEN_timeout"]
+[connection signal="pressed" from="GameOver/Button" to="." method="_on_Button_pressed"]
+[connection signal="timeout" from="Control/TimeScore" to="." method="_on_TimeScore_timeout"]
+[connection signal="pressed" from="StartPanel/btnStart" to="." method="_on_btnStart_pressed"]

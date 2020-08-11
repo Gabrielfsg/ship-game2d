@@ -1,0 +1,54 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://Nave.gd" type="Script" id=1]
+[ext_resource path="res://sprites/Sprites Nave 2.png" type="Texture" id=2]
+[ext_resource path="res://sprites/Sprites Nave 3.png" type="Texture" id=3]
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 2 ) ],
+"loop": true,
+"name": "voar",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 3 ) ],
+"loop": true,
+"name": "shot",
+"speed": 5.0
+} ]
+
+[sub_resource type="CapsuleShape2D" id=2]
+custom_solver_bias = 1.0
+radius = 15.0975
+height = 4.52771
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 242.818, 10 )
+
+[node name="Nave" type="KinematicBody2D"]
+position = Vector2( 214.799, 556.751 )
+collision_mask = 0
+script = ExtResource( 1 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+position = Vector2( -1.33609, -5.05249 )
+scale = Vector2( 0.100963, 0.0582238 )
+frames = SubResource( 1 )
+animation = "voar"
+
+[node name="shape" type="CollisionShape2D" parent="."]
+position = Vector2( -3.40843, -9.65137 )
+shape = SubResource( 2 )
+
+[node name="Position2D" type="Position2D" parent="."]
+position = Vector2( -1.92414, -26.2414 )
+
+[node name="Area2D" type="Area2D" parent="."]
+position = Vector2( -9.6225, -16.9809 )
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2( -13.2965, 48.1994 )
+shape = SubResource( 3 )
+[connection signal="area_entered" from="Area2D" to="." method="_on_Area2D_area_entered"]

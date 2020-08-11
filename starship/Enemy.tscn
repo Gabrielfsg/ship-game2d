@@ -1,0 +1,40 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Enemy.gd" type="Script" id=1]
+[ext_resource path="res://sprites/inimigo.png" type="Texture" id=2]
+
+[sub_resource type="CircleShape2D" id=1]
+radius = 16.7264
+
+[sub_resource type="SpriteFrames" id=2]
+animations = [ {
+"frames": [ ExtResource( 2 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
+[sub_resource type="CircleShape2D" id=3]
+radius = 22.0502
+
+[node name="Enemy" type="Area2D"]
+collision_layer = 0
+script = ExtResource( 1 )
+
+[node name="shape" type="CollisionShape2D" parent="."]
+position = Vector2( 164.171, 29.042 )
+shape = SubResource( 1 )
+
+[node name="sprite" type="AnimatedSprite" parent="."]
+position = Vector2( 166.255, 34.1676 )
+scale = Vector2( 0.208328, 0.149241 )
+frames = SubResource( 2 )
+
+[node name="corpo" type="Area2D" parent="."]
+position = Vector2( 164.517, 28.2307 )
+collision_layer = 4
+
+[node name="shape2" type="CollisionShape2D" parent="corpo"]
+position = Vector2( -0.0845337, -3.90765 )
+shape = SubResource( 3 )
+[connection signal="area_entered" from="corpo" to="." method="_on_corpo_area_entered"]
